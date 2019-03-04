@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'retrofont';
+    src: url('./retro-font.ttf');
+}
+
+body {
+    font-family: retrofont;
+    background-color: #251e44;
+    overflow-y: auto;
+    
+}
+.container {
+    margin: auto;
+    width: fit-content;
+}
+
+.retro {
+    background-image: -webkit-linear-gradient(#191970 10%, #378DBC 40%, #ffffff 50%, rgb(51, 19, 70) 54%, #4B0082 58%, #FF00FF 70%, #9370DB 90%);
+    color:transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    font-size: 40px;
+    font-style: italic;
+    display: block;
+}
+#title1 {
+}
+#title2 {
+}
+#rightCol {
+      color: white;
+      font-size: 10px;
+}
+.gameText {
+    width: 100%;
+}
