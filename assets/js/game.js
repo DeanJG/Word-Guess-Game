@@ -33,6 +33,9 @@ document.querySelector(`#winCount`).append(winCount)
 document.onkeydown = event => {
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         ltrGuess = event.key.toLowerCase()
+        // is it guessed, do we have guesses left
+        // check if itsin the word
+
         // functional loop to take correct letter input and fill in word
         // find out how to capitalize only first letter regardless of when it's guessed
         for (var j = 0; j < actualWord.length; j++) {
@@ -45,6 +48,7 @@ document.onkeydown = event => {
     }
     
 }
+// CUT GUESSED WORD BANK ARRAYS DOWN TO ONE, ltrsGuessed
 
 // // pseudo-coded rest of assignment
 // // housed by above onkey event function
