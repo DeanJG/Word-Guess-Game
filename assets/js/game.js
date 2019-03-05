@@ -46,28 +46,28 @@ document.onkeydown = event => {
     
 }
 
-// pseudo-coded rest of assignment
-// housed by above onkey event function
-letter is guessed {
-    checks if guess is NOT contained in Wrong&&actual {
-    // for incorrect
-        returns true,
-        set ltrGuess = event.key
-        pushes ltrGuess into Wrong array, 
-        decrements guessCount,
-        innerHTML to visually update the letters guessed and guessCount
-    // for correct
-    }else checks if NOT contained in ltrsGuessedRight&&Wrong {
-        returns true,
-        set variable ltrGuess = event.key
-        loop through all indexes of actualWord {
-            compare ltrGuess to all indexes,
-            place correctly guessed letter in appropriate underscore,
-            decrement ltrsRemain,
-        }
-        push ltrGuess into ltrsGuessedRight,
-        decrement guessCount,
-        show updated wordSpace with innerHTML,
-        innerHTML update guessCount,
-    }
-}
+// // pseudo-coded rest of assignment
+// // housed by above onkey event function
+// letter is guessed {
+//     checks if guess is NOT contained in Wrong&&actual {
+//     // for incorrect
+//         returns true,
+//         set ltrGuess = event.key
+//         pushes ltrGuess into Wrong array, 
+//         decrements guessCount,
+//         innerHTML to visually update the letters guessed and guessCount
+//     // for correct
+//     }else checks if NOT contained in ltrsGuessedRight&&Wrong {
+//         returns true,
+//         set variable ltrGuess = event.key
+//         loop through all indexes of actualWord {
+//             compare ltrGuess to all indexes,
+//             place correctly guessed letter in appropriate underscore,
+//             decrement ltrsRemain,
+//         }
+//         push ltrGuess into ltrsGuessedRight,
+//         decrement guessCount,
+//         show updated wordSpace with innerHTML,
+//         innerHTML update guessCount,
+//     }
+// }
