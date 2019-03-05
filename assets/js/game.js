@@ -27,31 +27,47 @@ document.querySelector(`#guessCounter`).append(guessCount)
 document.querySelector(`#ltrGuessDisplay`).append(ltrsGuessedWrong.join(`, `))
 document.querySelector(`#winCount`).append(winCount)
 
-// // first checks if key pressed is a letter
-// // will parent most all game code
-// document.onkeydown = event => {
-//     if (event.keyCode >= 65 && event.keyCode <= 90) {
-//             if (event.keyCode === 65) {
-//             }else if (event.keyCode === 81) {
-//             }
-//     }else {
-//         alert(`only letters are valid guesses`)
-//     }
-// }
 
+// onkey event function to house most all game code
+// will potentially be parented by a while loop tracking ltrRemain && guessCount
+document.onkeydown = event => {
+    if (event.keyCode >= 65 && event.keyCode <= 90) {
+        ltrGuess = event.key.toLowerCase()
+        // functional loop to take correct letter input and fill in word
+        // find out how to capitalize only first letter regardless of when it's guessed
+        for (var j = 0; j < actualWord.length; j++) {
+            if (actualWord[j] === ltrGuess) {
+            ansArr[j] = ltrGuess;
+            }
+        }
+        document.querySelector("#wordSpace").innerHTML = ansArr.join(` `)
+
+    }
+    
+}
+
+// pseudo-coded rest of assignment
+// housed by above onkey event function
 letter is guessed {
-    checks if guess is NOT contained in Wrong/Right/actual {
+    checks if guess is NOT contained in Wrong&&actual {
     // for incorrect
-        returns true, 
-        pushes into wrong array, 
-        decrements guessCount
+        returns true,
+        set ltrGuess = event.key
+        pushes ltrGuess into Wrong array, 
+        decrements guessCount,
         innerHTML to visually update the letters guessed and guessCount
     // for correct
-    }else checks if NOT contained in Right {
-        
+    }else checks if NOT contained in ltrsGuessedRight&&Wrong {
+        returns true,
+        set variable ltrGuess = event.key
+        loop through all indexes of actualWord {
+            compare ltrGuess to all indexes,
+            place correctly guessed letter in appropriate underscore,
+            decrement ltrsRemain,
+        }
+        push ltrGuess into ltrsGuessedRight,
+        decrement guessCount,
+        show updated wordSpace with innerHTML,
+        innerHTML update guessCount,
     }
-    // for repeat attempts
-        same check if NOT in W/R/A
-        returns false, then checks if contained in wrong array
-        returns true, 
 }
