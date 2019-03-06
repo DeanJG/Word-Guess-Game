@@ -10,25 +10,32 @@
 <body>
     <div id="titleCont" class="container">
         <div class="row">
-            <div class="col-md">
+            <div class="col-xs">
                 <span id="title1" class="retro">Hangman's</span>
             </div>
         </div>    
         <div class="row">
-            <div class="col-md">
+            <div class="col-xs">
                 <span id="title2" class="retro">New Wave</span>
+            </div>
+        </div>
+    </div>
+    <div id="endMessageCont" class="container">
+        <div class="row">
+            <div class="col-xs">
+                <p id="endMessageDisplay"></p>
             </div>
         </div>
     </div>
 
     <div id="mainContent" class="container">
         <div class="row">
-            <div id="leftCol" class="col-sm-6">
-                <img id="currentImg" src="./assets/images/Retro-Img-Small.jpg" alt="CurrentImage">
+            <div id="leftCol" class="col-12 col-sm-6">
+                <img id="currentImg" class="img-fluid" src="./assets/images/Retro-Img-Small.jpg" alt="CurrentImage">
             </div>
-            <div id="rightCol" class="col-sm-6">
+            <div id="rightCol" class="col-12 col-sm-6">
                 <div class="row">
-                    <p id="instructions" class="text-center gameText">Press Any Letter To <br>Get Started!</p>
+                    <p id="instructions" class="text-center gameText">Press Any Letter To Make A Guess!</p>
                 </div>
                 <div class="row">
                     <p id="winText" class="text-center gameText">Wins</p>
@@ -47,7 +54,7 @@
                     <p id="guessCounter" class="text-center gameText"></p>
                 </div>
                 <div class="row">
-                    <p id="ltrGuessText" class="text-center gameText">Incorrect Guesses So Far</p>
+                    <p id="ltrGuessText" class="text-center gameText">Guesses Made So Far</p>
                 </div>
                 <div class="row">
                     <p id="ltrGuessDisplay" class="text-center gameText"></p>

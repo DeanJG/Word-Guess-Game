@@ -23,6 +23,14 @@ body {
     font-style: italic;
     display: block;
 }
+#endMessageCont {
+    font-size: 14px;
+    color: white;
+}
+#endMessageDisplay {
+    max-width: 428px;
+    text-align: center;
+}
 #title1 {
 }
 #title2 {
@@ -33,4 +41,26 @@ body {
 }
 .gameText {
     width: 100%;
+}
+#ltrGuessDisplay {
+    max-width: 214px;
+}
+#instructions {
+    max-width: 210px
+}
+#currentImg {
+    max-height: 106px;
+    max-width: 188px;
+}
+@media (max-width: 576px) {
+    #currentImg {
+        margin-left: 25%;
+        margin-bottom: 10px
+    }
+}
+@media (min-width: 575px) and (max-width: 768px) {
+    #titleCont {
+        padding-right: 0px;
+        padding-left: 0px
+    }
 }

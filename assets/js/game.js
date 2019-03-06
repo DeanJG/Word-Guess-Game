@@ -1,31 +1,49 @@
 // list of words for the game
-const bands = [`eurythmics`, `inxs`, `erasure`, `wham`, `aha`, `alphaville`]
+const bands = [`Eurythmics`, `INXS`, `Erasure`, `Wham`, `Aha`, `Alphaville`]
 // randomly choosing a band name
-let currentBand = bands[Math.floor(Math.random() * bands.length)]
+let currentBand
+// To be used in case of win
+let bandDisplay
 // creates underscores based on length of secret word
-let ansArr = []
-for (var i = 0; i < currentBand.length; i++) {
-    ansArr[i] = `_`;
-}
+let ansArr
 // informational variables/arrays at game start
 let winCount = 0
-let guessCount = currentBand.length + 4
-let ltrsGuessedWrong = []
-// this along with guessCount will serve as game progress tracking
-let ltrsRemain = currentBand.length
+let guessCount
+// Serves as unavailable(can't be re-guessed) letter bank
+let ltrsGuessed
+let ltrsRemain
 // empty variable to serve as user's guess
 let ltrGuess = null
-// Right and Wrong will serve as unavailable letter bank
-let ltrsGuessedRight = []
-// array of the correct letters for the secret word
-let actualWord = currentBand.split(``)
+let actualWord
 
+// Game's init/restart function
+const newGame = _ => {
+    // randomly choosing a band name
+    currentBand = bands[Math.floor(Math.random() * bands.length)]
+    // grabbing original band name(with caps) for win display
+    bandDisplay = currentBand
+    // converting the game-relevant string for functionality
+    currentBand = currentBand.toLowerCase()
+    // resets the underscore array
+    ansArr = []
+    // creates underscores based on length of secret word
+    for (var i = 0; i < currentBand.length; i++) {
+        ansArr[i] = `_`;
+    }
+    // these will serve as game progress tracking
+    guessCount = currentBand.length + 4
+    ltrsRemain = currentBand.length
+    // resets the guessed letters array
+    ltrsGuessed = []
+    // array of the correct letters for the secret word
+    actualWord = currentBand.split(``)
+    // updates game display with base/new values
+    document.querySelector(`#wordSpace`).innerHTML = ansArr.join(` `)
+    document.querySelector(`#guessCounter`).innerHTML = guessCount
+    document.querySelector(`#ltrGuessDisplay`).innerHTML = ltrsGuessed.join(`, `)
+    document.querySelector(`#winCount`).innerHTML = winCount
+}
 
-// display at game start and upon refresh
-document.querySelector(`#wordSpace`).append(ansArr.join(` `))
-document.querySelector(`#guessCounter`).append(guessCount)
-document.querySelector(`#ltrGuessDisplay`).append(ltrsGuessedWrong.join(`, `))
-document.querySelector(`#winCount`).append(winCount)
 
 
 // onkey event function to house most all game code
@@ -34,32 +52,47 @@ document.onkeydown = event => {
     if (event.keyCode >= 65 && event.keyCode <= 90) {
         ltrGuess = event.key.toLowerCase()
         // is it guessed, do we have guesses left
+        if ((ltrsGuessed.indexOf(ltrGuess) === -1) && guessCount > 0) {
+            ltrsGuessed.push(ltrGuess)
+            guessCount--
+            document.querySelector("#guessCounter").innerHTML = guessCount
+            document.querySelector("#ltrGuessDisplay").innerHTML = ltrsGuessed.sort().join(` `)
         // check if itsin the word
-
-        // functional loop to take correct letter input and fill in word
-        // find out how to capitalize only first letter regardless of when it's guessed
-        for (var j = 0; j < actualWord.length; j++) {
-            if (actualWord[j] === ltrGuess) {
-            ansArr[j] = ltrGuess;
+            if ((actualWord.indexOf(ltrGuess) !== -1)) {
+                // functional loop to take correct letter input and fill in word
+                for (var j = 0; j < actualWord.length; j++) {
+                    if (actualWord[j] === ltrGuess) {
+                        ansArr[j] = ltrGuess;
+                        ltrsRemain--
+                    }
+                }
+                document.querySelector("#wordSpace").innerHTML = ansArr.join(` `)
+                if (ltrsRemain === 0) {
+                    // what happens if player wins
+                    winCount++
+                    document.querySelector(`#endMessageDisplay`).innerHTML = `You Won! It Was ${bandDisplay}!`
+                    // innerHTML to change image to chosen band image
+                    // innerHTML to play a song of chosen band
+                    newGame()
+                }
+            }
+            if (guessCount === 0) {
+                // what happens if player loses
+                document.querySelector(`#endMessageDisplay`).innerHTML = `Oh No! You Ran Out Of Guesses! Care To Try Again?`
+                newGame()
             }
         }
-        document.querySelector("#wordSpace").innerHTML = ansArr.join(` `)
+        
 
     }
     
 }
-// CUT GUESSED WORD BANK ARRAYS DOWN TO ONE, ltrsGuessed
+
+newGame()
 
 // // pseudo-coded rest of assignment
 // // housed by above onkey event function
 // letter is guessed {
-//     checks if guess is NOT contained in Wrong&&actual {
-//     // for incorrect
-//         returns true,
-//         set ltrGuess = event.key
-//         pushes ltrGuess into Wrong array, 
-//         decrements guessCount,
-//         innerHTML to visually update the letters guessed and guessCount
 //     // for correct
 //     }else checks if NOT contained in ltrsGuessedRight&&Wrong {
 //         returns true,
@@ -69,9 +102,5 @@ document.onkeydown = event => {
 //             place correctly guessed letter in appropriate underscore,
 //             decrement ltrsRemain,
 //         }
-//         push ltrGuess into ltrsGuessedRight,
-//         decrement guessCount,
-//         show updated wordSpace with innerHTML,
-//         innerHTML update guessCount,
 //     }
 // }
