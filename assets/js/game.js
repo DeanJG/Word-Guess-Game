@@ -2,8 +2,6 @@
 const bands = [`Eurythmics`, `INXS`, `Erasure`, `Wham`, `Aha`, `Alphaville`]
 // randomly choosing a band name
 let currentBand
-// To be used in case of win
-let bandDisplay
 // creates underscores based on length of secret word
 let ansArr
 // informational variables/arrays at game start
@@ -15,7 +13,12 @@ let ltrsRemain
 // empty variable to serve as user's guess
 let ltrGuess = null
 let actualWord
-
+// To be used in case of win
+let bandDisplay
+ // swaps base image with chosen band image
+const changeImg = (link) => {
+    document.getElementById("currentImg").src=link;
+}
 // Game's init/restart function
 const newGame = _ => {
     // randomly choosing a band name
@@ -31,7 +34,7 @@ const newGame = _ => {
         ansArr[i] = `_`;
     }
     // these will serve as game progress tracking
-    guessCount = currentBand.length + 4
+    guessCount = currentBand.length + 5
     ltrsRemain = currentBand.length
     // resets the guessed letters array
     ltrsGuessed = []
@@ -71,8 +74,41 @@ document.onkeydown = event => {
                     // what happens if player wins
                     winCount++
                     document.querySelector(`#endMessageDisplay`).innerHTML = `You Won! It Was ${bandDisplay}!`
-                    // innerHTML to change image to chosen band image
-                    // innerHTML to play a song of chosen band
+                    // change image to chosen band image and (play their song)
+                    switch (bandDisplay) {
+                        case bands[0]:
+                            changeImg("./assets/images/EurAlbumCover.jpg")
+                            // audio = new Audio('./assets/sounds/Eur-Dreams.mp3')
+                            // audio.play()
+                            break;
+                        case bands[1]:
+                            changeImg("./assets/images/INXSAlbumCover.jpg")
+                            // audio = new Audio('./assets/sounds/INXS-Tonight.mp3')
+                            // audio.play()
+                            break;
+                        case bands[2]:
+                            changeImg("./assets/images/EraAlbumCover.jpg")
+                            // audio = new Audio('./assets/sounds/Era-Respect.mp3')
+                            // audio.play()
+                            break;
+                        case bands[3]:
+                            changeImg("./assets/images/WhamAlbumCover.jpg")
+                            // audio = new Audio('./assets/sounds/Wham-Christmas.mp3')
+                            // audio.play()
+                            break;
+                        case bands[4]:
+                            changeImg("./assets/images/ahaAlbumCover.jpg")
+                            // audio = new Audio('./assets/sounds/aha-Take.mp3')
+                            // audio.play()
+                            break;
+                        case bands[5]:
+                            changeImg("./assets/images/AlpAlbumCover.jpg")
+                            // audio = new Audio('./assets/sounds/Alp-Young.mp3')
+                            // audio.play()
+                            break;
+                        default:
+                            break
+                    }
                     newGame()
                 }
             }

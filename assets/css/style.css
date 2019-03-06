@@ -48,14 +48,28 @@ body {
 #instructions {
     max-width: 210px
 }
-#currentImg {
+#leftCol {
     max-height: 106px;
     max-width: 188px;
+    padding-left: 0px;
+    align-content: center;
+}
+#currentImg {
+    height: 100%;
+    width: 100%;
 }
 @media (max-width: 576px) {
     #currentImg {
-        margin-left: 25%;
-        margin-bottom: 10px
+        margin-left: 30%;
+        margin-bottom: 10px;
+        height: 106px;
+        width: 188px;
+    }
+    #leftCol {
+        max-width: 100%;
+    }
+    #instructions {
+        max-width: 100%;
     }
 }
 @media (min-width: 575px) and (max-width: 768px) {
