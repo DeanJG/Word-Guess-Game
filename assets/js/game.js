@@ -125,18 +125,3 @@ document.onkeydown = event => {
 }
 
 newGame()
-
-// // pseudo-coded rest of assignment
-// // housed by above onkey event function
-// letter is guessed {
-//     // for correct
-//     }else checks if NOT contained in ltrsGuessedRight&&Wrong {
-//         returns true,
-//         set variable ltrGuess = event.key
-//         loop through all indexes of actualWord {
-//             compare ltrGuess to all indexes,
-//             place correctly guessed letter in appropriate underscore,
-//             decrement ltrsRemain,
-//         }
-//     }
-// }
