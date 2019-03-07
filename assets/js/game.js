@@ -115,6 +115,7 @@ document.onkeydown = event => {
             if (guessCount === 0) {
                 // what happens if player loses
                 document.querySelector(`#endMessageDisplay`).innerHTML = `Oh No! You Ran Out Of Guesses! Care To Try Again?`
+                changeImg("./assets/images/Retro-Img-Small.jpg")
                 newGame()
             }
         }
